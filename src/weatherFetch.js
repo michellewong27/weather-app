@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from "react";
 
 function WeatherFetch() {
-    const key = `${process.env.REACT_APP_API_KEY}`;
+    const key = 'b9f87ca9b549d0ea2a00970ff58a0d34'
     const [feels_like,setFeelsLike] = useState('');
     const [mainTemp,setMainTemp] = useState('');
     const [description,setDescription] = useState('');
