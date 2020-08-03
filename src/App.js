@@ -5,10 +5,10 @@ import WeatherFetch from './weatherFetch.js'
 function App() {
   return (
     <div className="App">
-      <h1>Weather-Town</h1>
+      <h1>New York Weather Report</h1>
       <WeatherFetch />
     </div>
-  );
+  )
 }
 
 export default App;
