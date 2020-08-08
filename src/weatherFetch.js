@@ -78,7 +78,7 @@ class WeatherFetch extends React.Component {
         return (
             < div style={{
                 width: "500px",
-                margin: "0 auto",
+                margin: "30px auto",
                 border: "1px solid lightgrey",
                 backgroundColor: "#f1f1f1",
                 borderRadius: "6px",
