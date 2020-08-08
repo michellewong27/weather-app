@@ -1,5 +1,4 @@
 import React from "react";
-import Dropdown from './dropdown.js';
 
 const key = 'b9f87ca9b549d0ea2a00970ff58a0d34'
 //have option to click imperial or metric units for URL 
@@ -41,7 +40,6 @@ class WeatherFetch extends React.Component {
         fetch('https://api.openweathermap.org/data/2.5/weather?q='+this.state.location+'&APPID='+key+ '&units='+this.state.metricOption)
         .then((resp) => resp.json())
         .then((data) => {
-            console.log(data);
             if(data.cod === "404")  return alert("Cannot Find City")
             this.setState(({
                 currentLocation: this.state.location,
@@ -92,9 +90,6 @@ class WeatherFetch extends React.Component {
                 <option value="imperial">Imperial</option>
                 <option selected value="metric">Metric</option>
             </select>
-
-            {/* <Dropdown options={options} onChange={this.onSelect} value={this.state.defaultOption} placeholder="Select an option"/> */}
-           
             <div style={{ padding: "2rem" }}>
                 <form onSubmit={e => this.handleSubmit(e)}>
                     <label for="City">Enter City Here:</label>
@@ -115,8 +110,7 @@ class WeatherFetch extends React.Component {
             </div>
             </div>
         )
-    }
-    
+    } 
 }
 
 export default WeatherFetch;
