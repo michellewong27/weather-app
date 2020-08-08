@@ -57,7 +57,6 @@ class WeatherFetch extends React.Component {
         fetch('https://api.openweathermap.org/data/2.5/weather?q='+this.state.location+'&APPID='+key+ '&units='+this.state.metricOption)
         .then((resp) => resp.json())
         .then((data) => {
-            console.log(data);
             if(data.cod === "404")  return
             this.setState(({
                 feelsLike: data.main.feels_like,
@@ -88,11 +87,11 @@ class WeatherFetch extends React.Component {
             <h1>{this.state.currentLocation} Weather Report</h1>
             <select value={this.state.metricOption} onChange={e =>this.selectUnit(e)}>
                 <option value="imperial">Imperial</option>
-                <option selected value="metric">Metric</option>
+                <option defaultValue="metric">Metric</option>
             </select>
             <div style={{ padding: "2rem" }}>
                 <form onSubmit={e => this.handleSubmit(e)}>
-                    <label for="City">Enter City Here:</label>
+                    <label>Enter City Here:</label>
                     <input type="text" style={{
                         padding: "0.5rem",
                         width: "100%",
