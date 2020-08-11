@@ -81,7 +81,7 @@ class WeatherFetch extends React.Component {
                 width: "80%",
                 margin: "30px auto",
                 border: "1px solid white",
-                backgroundColor: "#f1f1f1",
+                
                 borderRadius: "6px",
                 boxSizing: "border-box",
                 justifyContent: "center"
