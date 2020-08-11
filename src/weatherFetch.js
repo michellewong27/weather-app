@@ -30,11 +30,11 @@ class WeatherFetch extends React.Component {
         if(!this.state.location || this.state.location.length < 1) return
         if(this.state.metricOption === 'metric'){
             this.setState({
-                degrees: 'Celsius'
+                degrees: 'C'
             })
         } else {
             this.setState({
-                degrees: 'Fahrenheit'
+                degrees: 'F'
             })
         }
         fetch('https://api.openweathermap.org/data/2.5/weather?q='+this.state.location+'&APPID='+key+ '&units='+this.state.metricOption)
@@ -77,36 +77,35 @@ class WeatherFetch extends React.Component {
     render(){
         return (
             < div style={{
-                width: "500px",
+                width: "80%",
                 margin: "30px auto",
-                border: "1px solid lightgrey",
+                border: "1px solid white",
                 backgroundColor: "#f1f1f1",
                 borderRadius: "6px",
-                boxSizing: "border-box"
+                boxSizing: "border-box",
+                justifyContent: "center"
             }}>
-            <h1>{this.state.currentLocation} Weather Report</h1>
-            <select value={this.state.metricOption} onChange={e =>this.selectUnit(e)}>
+            <h1 style={{textAlign:"center", margin:"10px"}}>{this.state.currentLocation} Weather Report</h1>
+            <select className="selectBtn" value={this.state.metricOption} onChange={e =>this.selectUnit(e)}>
                 <option value="imperial">Imperial</option>
                 <option defaultValue="metric">Metric</option>
             </select>
-            <div style={{ padding: "2rem" }}>
-                <form onSubmit={e => this.handleSubmit(e)}>
-                    <label>Enter City Here:</label>
-                    <input type="text" style={{
-                        padding: "0.5rem",
-                        width: "100%",
-                        boxSizing: "border-box"
-                        }} 
+            <div className="weatherInfo">
+                <form className="cityInputForm" onSubmit={e => this.handleSubmit(e)}>
+                    <label style={{width:"20%", float:"left"}}>Search City:</label>
+                    <input className="cityInputBox" type="text" style={{borderRadius: "15px"}}
                         value={this.state.location} onChange={e => this.changeLocation(e)} />
-                    <input type="submit" value="Submit" />
+                    <input style={{width:"10%", margin: "10px "}}
+                        type="submit" value="Submit" />
                 </form>
     
-            <h2>Main Temperature : {this.state.mainTemp} Degrees {this.state.degrees}</h2>
-            <h2>Feels like: {this.state.feelsLike} Degrees {this.state.degrees}</h2>
+            <h2>Main Temperature : {this.state.mainTemp}<span>&#176;</span> {this.state.degrees}</h2>
+            <h2>Feels like: {this.state.feelsLike}<span>&#176;</span> {this.state.degrees}</h2>
             <h2>Weather Parameter: {this.state.main}</h2>
-            <h2>Description: {this.state.escription}</h2>
+            <h2>Description: {this.state.description}</h2>
             <img src={"http://openweathermap.org/img/wn/" + this.state.iconId + "@2x.png"} alt="weather-icon"/>
             </div>
+            
             </div>
         )
     } 

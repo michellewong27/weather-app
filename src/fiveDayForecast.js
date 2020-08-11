@@ -5,14 +5,6 @@ const key = 'b9f87ca9b549d0ea2a00970ff58a0d34'
 class FiveDayForecast extends React.Component{
     state = {
         location: 'New York',
-        dateDay0:'',
-        tempDay0:'',
-        feelsLikeDay0:'',
-        tempMinDay0:'',
-        tempMaxDay0:'',
-        humidityDay0:'',
-        windSpeedDay0:'',
-        descriptionDay0:'',
         dateDay1:'',
         tempDay1:'',
         feelsLikeDay1:'',
@@ -64,14 +56,6 @@ class FiveDayForecast extends React.Component{
             //iterate through each list array, return lists where dt_txt contains 12:00:00
                 //b/c list[] manually put in might not be 12:00 always
             this.setState({
-                dateDay0: data.list[0].dt_txt,
-                tempDay0: data.list[0].main.temp,
-                feelsLikeDay0: data.list[0].main.feels_like,
-                tempMinDay0: data.list[0].main.temp_min,
-                tempMaxDay0: data.list[0].main.temp_max,
-                humidityDay0: data.list[0].main.humidity,
-                windSpeedDay0: data.list[0].wind.speed,
-                descriptionDay0: data.list[0].weather[0].description,
                 dateDay1: data.list[5].dt_txt,
                 tempDay1: data.list[5].main.temp,
                 feelsLikeDay1: data.list[5].main.feels_like,
@@ -121,76 +105,66 @@ class FiveDayForecast extends React.Component{
             <div class="row" style={{
                 width: "80%",
                 margin: "30px auto",
-                border: "1px solid lightgrey",
+                border: "1px solid white",
                 backgroundColor: "#f1f1f1",
                 borderRadius: "6px",
-                boxSizing: "border-box"
-            }}>
-                <h1>Five Day Forecast</h1>
+                boxSizing: "border-box",
+                justifyContent: "center"
+            }} >
+                <h1 style={{textAlign:"center"}}>Five Day Forecast</h1>
                 <br></br>
-                <div class="column">
-                    <h2>Date: {this.state.dateDay0}</h2>
-                    <h2>Main temperature: {this.state.tempDay0} Fahrenheit</h2>
-                    <h2>Feels like: {this.state.feelsLikeDay0} Fahrenheit</h2>
-                    <h2>Max temperature: {this.state.tempMaxDay0} Fahrenheit</h2>
-                    <h2>Min Temperature: {this.state.tempMinDay0} Fahrenheit</h2>
-                    <h2>Humidity: {this.state.humidityDay0}%</h2>
-                    <h2>Wind Speed: {this.state.windSpeedDay0}</h2>
-                    <h2>Description: {this.state.descriptionDay0}</h2>
-                </div>
-                <br></br>
-                <div class="column">
+                <div className="column">
                     <h2>Date: {this.state.dateDay1}</h2>
-                    <h2>Main temperature: {this.state.tempDay1} Fahrenheit</h2>
-                    <h2>Feels like: {this.state.feelsLikeDay1} Fahrenheit</h2>
-                    <h2>Max temperature: {this.state.tempMaxDay1} Fahrenheit</h2>
-                    <h2>Min Temperature: {this.state.tempMinDay1} Fahrenheit</h2>
+                    <h2>Main temperature: {this.state.tempDay1}<span>&#176;</span>F</h2>
+                    <h2>Feels like: {this.state.feelsLikeDay1}<span>&#176;</span>F</h2>
+                    <h2>Max temperature: {this.state.tempMaxDay1}<span>&#176;</span>F</h2>
+                    <h2>Min Temperature: {this.state.tempMinDay1}<span>&#176;</span>F</h2>
                     <h2>Humidity: {this.state.humidityDay1}%</h2>
-                    <h2>Wind Speed: {this.state.windSpeedDay1}</h2>
+                    <h2>Wind Speed: {this.state.windSpeedDay1} mph</h2>
                     <h2>Description: {this.state.descriptionDay1}</h2>
                 </div>
                 <br></br>
                 <div class="column">
                     <h2>Date: {this.state.dateDay2}</h2>
-                    <h2>Main temperature: {this.state.tempDay2} Fahrenheit</h2>
-                    <h2>Feels like: {this.state.feelsLikeDay2} Fahrenheit</h2>
-                    <h2>Max temperature: {this.state.tempMaxDay2} Fahrenheit</h2>
-                    <h2>Min Temperature: {this.state.tempMinDay2} Fahrenheit</h2>
+                    <h2>Main temperature: {this.state.tempDay2}<span>&#176;</span>F</h2>
+                    <h2>Feels like: {this.state.feelsLikeDay2}<span>&#176;</span>F</h2>
+                    <h2>Max temperature: {this.state.tempMaxDay2}<span>&#176;</span>F</h2>
+                    <h2>Min Temperature: {this.state.tempMinDay2}<span>&#176;</span>F</h2>
                     <h2>Humidity: {this.state.humidityDay2}%</h2>
-                    <h2>Wind Speed: {this.state.windSpeedDay2}</h2>
+                    <h2>Wind Speed: {this.state.windSpeedDay2} mph</h2>
                     <h2>Description: {this.state.descriptionDay2}</h2>
                 </div>
                 <br></br>
                 <div class="column">
                     <h2>Date: {this.state.dateDay3}</h2>
-                    <h2>Feels like: {this.state.feelsLikeDay3} Fahrenheit</h2>
-                    <h2>Max temperature: {this.state.tempMaxDay3} Fahrenheit</h2>
-                    <h2>Min Temperature: {this.state.tempMinDay3} Fahrenheit</h2>
-                    <h2>Main temperature: {this.state.tempDay3} Fahrenheit</h2>
+                    <h2>Feels like: {this.state.feelsLikeDay3}<span>&#176;</span>F</h2>
+                    <h2>Max temperature: {this.state.tempMaxDay3}<span>&#176;</span>F</h2>
+                    <h2>Min Temperature: {this.state.tempMinDay3}<span>&#176;</span>F</h2>
+                    <h2>Main temperature: {this.state.tempDay3}<span>&#176;</span>F</h2>
                     <h2>Humidity: {this.state.humidityDay3}%</h2>
-                    <h2>Wind Speed: {this.state.windSpeedDay3}</h2>
+                    <h2>Wind Speed: {this.state.windSpeedDay3} mph</h2>
                     <h2>Description: {this.state.descriptionDay3}</h2>
                 </div>
                 <br></br>
                 <div class="column">
                     <h2>Date: {this.state.dateDay4}</h2>
-                    <h2>Feels like: {this.state.feelsLikeDay4} Fahrenheit</h2>
-                    <h2>Max temperature: {this.state.tempMaxDay4} Fahrenheit</h2>
-                    <h2>Min Temperature: {this.state.tempMinDay4} Fahrenheit</h2>
-                    <h2>Main temperature: {this.state.tempDay4} Fahrenheit</h2>
+                    <h2>Feels like: {this.state.feelsLikeDay4}<span>&#176;</span>F</h2>
+                    <h2>Max temperature: {this.state.tempMaxDay4}<span>&#176;</span>F</h2>
+                    <h2>Min Temperature: {this.state.tempMinDay4}<span>&#176;</span>F</h2>
+                    <h2>Main temperature: {this.state.tempDay4}<span>&#176;</span>F</h2>
                     <h2>Humidity: {this.state.humidityDay4}%</h2>
-                    <h2>Wind Speed: {this.state.windSpeedDay4}</h2>
+                    <h2>Wind Speed: {this.state.windSpeedDay4} mph</h2>
                     <h2>Description: {this.state.descriptionDay4}</h2>
                 </div>
                 <br></br>
                 <div class="column">
                     <h2>Date: {this.state.dateDay5}</h2>
-                    <h2>Feels like: {this.state.feelsLikeDay5} Fahrenheit</h2>
-                    <h2>Max temperature: {this.state.tempMaxDay5} Fahrenheit</h2>
-                    <h2>Min Temperature: {this.state.tempMinDay5} Fahrenheit</h2>
-                    <h2>Main temperature: {this.state.tempDay5} Fahrenheit</h2>
+                    <h2>Feels like: {this.state.feelsLikeDay5}<span>&#176;</span>F</h2>
+                    <h2>Max temperature: {this.state.tempMaxDay5}<span>&#176;</span>F</h2>
+                    <h2>Min Temperature: {this.state.tempMinDay5}<span>&#176;</span>F</h2>
+                    <h2>Main temperature: {this.state.tempDay5}<span>&#176;</span>F</h2>
                     <h2>Humidity: {this.state.humidityDay5}%</h2>
-                    <h2>Wind Speed: {this.state.windSpeedDay5}</h2>
+                    <h2>Wind Speed: {this.state.windSpeedDay5} mph</h2>
                     <h2>Description: {this.state.descriptionDay5}</h2>
                 </div>
             </div>
