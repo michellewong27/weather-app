@@ -26,7 +26,6 @@ code {
 .selectBtn {
   float: right;
   margin: 30px;
-  display:inline-block;
 }
 
 .cityInputForm {

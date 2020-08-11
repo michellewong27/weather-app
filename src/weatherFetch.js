@@ -16,7 +16,7 @@ class WeatherFetch extends React.Component {
         description: "",
         main: "",
         iconId: "",
-        degrees:""
+        degrees:"F"
       }
 
     changeLocation=(e)=>{
@@ -43,6 +43,7 @@ class WeatherFetch extends React.Component {
             if(data.cod === "404")  return alert("Cannot Find City")
             this.setState(({
                 currentLocation: this.state.location,
+                location: '',
                 feelsLike: data.main.feels_like,
                 mainTemp: data.main.temp,
                 description: data.weather[0].description,
@@ -86,10 +87,6 @@ class WeatherFetch extends React.Component {
                 justifyContent: "center"
             }}>
             <h1 style={{textAlign:"center", margin:"10px"}}>{this.state.currentLocation} Weather Report</h1>
-            <select className="selectBtn" value={this.state.metricOption} onChange={e =>this.selectUnit(e)}>
-                <option value="imperial">Imperial</option>
-                <option defaultValue="metric">Metric</option>
-            </select>
             <div className="weatherInfo">
                 <form className="cityInputForm" onSubmit={e => this.handleSubmit(e)}>
                     <label style={{width:"20%", float:"left"}}>Search City:</label>
@@ -98,7 +95,10 @@ class WeatherFetch extends React.Component {
                     <input style={{width:"10%", margin: "10px "}}
                         type="submit" value="Submit" />
                 </form>
-    
+                <select className="selectBtn" value={this.state.metricOption} onChange={e =>this.selectUnit(e)}>
+                    <option value="imperial">Imperial</option>
+                    <option defaultValue="metric">Metric</option>
+                </select>
             <h2>Main Temperature : {this.state.mainTemp}<span>&#176;</span> {this.state.degrees}</h2>
             <h2>Feels like: {this.state.feelsLike}<span>&#176;</span> {this.state.degrees}</h2>
             <h2>Weather Parameter: {this.state.main}</h2>

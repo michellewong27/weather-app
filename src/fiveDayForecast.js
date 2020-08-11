@@ -5,6 +5,7 @@ const key = 'b9f87ca9b549d0ea2a00970ff58a0d34'
 class FiveDayForecast extends React.Component{
     state = {
         location: 'New York',
+        currentLocation: '',
         dateDay1:'',
         tempDay1:'',
         feelsLikeDay1:'',
@@ -100,6 +101,76 @@ class FiveDayForecast extends React.Component{
         })
     }
 
+
+    changeLocation=(e)=>{
+        this.setState({
+            location: e.target.value
+        })
+    }
+
+    handleSubmit=(e)=>{
+        e.preventDefault()
+        if(!this.state.location || this.state.location.length < 1) return
+        if(this.state.metricOption === 'metric'){
+            this.setState({
+                degrees: 'C'
+            })
+        } else {
+            this.setState({
+                degrees: 'F'
+            })
+        }
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.state.location}&appid=${key}&units=imperial`)
+        .then((resp) => resp.json())
+        .then((data) => {
+            if(data.cod === "404")  return alert("Cannot Find City")
+            this.setState({
+                currentLocation: this.state.location,
+                location: '',
+                dateDay1: data.list[5].dt_txt,
+                tempDay1: data.list[5].main.temp,
+                feelsLikeDay1: data.list[5].main.feels_like,
+                tempMinDay1: data.list[5].main.temp_min,
+                tempMaxDay1: data.list[5].main.temp_max,
+                humidityDay1: data.list[5].main.humidity,
+                windSpeedDay1: data.list[5].wind.speed,
+                descriptionDay1: data.list[5].weather[0].description,
+                dateDay2: data.list[13].dt_txt,
+                tempDay2: data.list[13].main.temp,
+                feelsLikeDay2: data.list[13].main.feels_like,
+                tempMinDay2: data.list[13].main.temp_min,
+                tempMaxDay2: data.list[13].main.temp_max,
+                humidityDay2: data.list[13].main.humidity,
+                windSpeedDay2: data.list[13].wind.speed,
+                descriptionDay2: data.list[13].weather[0].description,
+                dateDay3: data.list[21].dt_txt,
+                tempDay3: data.list[21].main.temp,
+                feelsLikeDay3: data.list[21].main.feels_like,
+                tempMinDay3: data.list[21].main.temp_min,
+                tempMaxDay3: data.list[21].main.temp_max,
+                humidityDay3: data.list[21].main.humidity,
+                windSpeedDay3: data.list[21].wind.speed,
+                descriptionDay3: data.list[21].weather[0].description,
+                dateDay4: data.list[29].dt_txt,
+                tempDay4: data.list[29].main.temp,
+                feelsLikeDay4: data.list[29].main.feels_like,
+                tempMinDay4: data.list[29].main.temp_min,
+                tempMaxDay4: data.list[29].main.temp_max,
+                humidityDay4: data.list[29].main.humidity,
+                windSpeedDay4: data.list[29].wind.speed,
+                descriptionDay4: data.list[29].weather[0].description,
+                dateDay5: data.list[37].dt_txt,
+                tempDay5: data.list[37].main.temp,
+                feelsLikeDay5: data.list[37].main.feels_like,
+                tempMinDay5: data.list[37].main.temp_min,
+                tempMaxDay5: data.list[37].main.temp_max,
+                humidityDay5: data.list[37].main.humidity,
+                windSpeedDay5: data.list[37].wind.speed,
+                descriptionDay5: data.list[37].weather[0].description
+            })
+        })
+    }
+
     render(){
         return(
             <div class="row" style={{
@@ -111,7 +182,20 @@ class FiveDayForecast extends React.Component{
                 boxSizing: "border-box",
                 justifyContent: "center"
             }} >
-                <h1 style={{textAlign:"center"}}>Five Day Forecast</h1>
+                <h1 style={{textAlign:"center"}}>{this.state.currentLocation} Five Day Forecast</h1>
+                <div>
+                <form className="cityInputForm" onSubmit={e => this.handleSubmit(e)}>
+                    <label style={{width:"20%", float:"left"}}>Search City:</label>
+                    <input className="cityInputBox" type="text" style={{borderRadius: "15px"}}
+                        value={this.state.location} onChange={e => this.changeLocation(e)} />
+                    <input style={{width:"10%", margin: "10px "}}
+                        type="submit" value="Submit" />
+                </form>
+                <select className="selectBtn" value={this.state.metricOption} onChange={e =>this.selectUnit(e)}>
+                    <option value="imperial">Imperial</option>
+                    <option defaultValue="metric">Metric</option>
+                </select>
+                </div>
                 <br></br>
                 <div className="column">
                     <h2>Date: {this.state.dateDay1}</h2>
